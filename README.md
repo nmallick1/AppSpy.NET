@@ -1,16 +1,18 @@
+
 # AppSpy.NET
 Given a function name , inspect .NET code against a set of known bad coding practices that cause production perf and stability impact.
 1. Call to decompile a method
-  Request
-    GET http://localhost:62008/api/decompileMethod?fullyQualifiedFunctionName=mawshol!demomvp.HighCPUPage1.ForceCpuUsage(int32)
-  Response
-    Source Code
+
+	Request : GET http://localhost:62008/api/decompileMethod?fullyQualifiedFunctionName=mawshol!demomvp.HighCPUPage1.ForceCpuUsage(int32)
+    Response : Source Code
+
 2. Call to run a check against source code
-  Request
-    POST http://localhost:62008/api/analyzeCode
-    Content-Type:application.json
-    Body: Source code from above call.
+
+	Request : POST http://localhost:62008/api/analyzeCode
+    Request Content-Type : application.json
+    Request Body : Source code from above call.
   Response
+```
     {
         "RuleName": "Infinite Loop Check",
         "RuleCategory": 0,
@@ -31,3 +33,4 @@ Given a function name , inspect .NET code against a set of known bad coding prac
             }
         ]
     }
+```

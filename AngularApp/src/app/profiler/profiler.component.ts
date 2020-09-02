@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CodeSelectorContainerComponent } from '../code-selector-container/code-selector-container.component';
-import {DialogData} from '../shared/code-selector-container-model'
+import {IDialogData} from '../shared/models/code-selector-container-model'
 @Component({
   selector: 'app-profiler',
   templateUrl: './profiler.component.html',
@@ -19,7 +19,7 @@ export class ProfilerComponent implements OnInit {
     
     let dialogData = {
       functionName:functionNameToDecompile
-    } as DialogData;
+    } as IDialogData;
     
     this.dialog.open(CodeSelectorContainerComponent, {
       width:"95%",

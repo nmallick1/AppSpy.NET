@@ -1,5 +1,6 @@
 .container {
-    font-family: Arial, Helvetica, sans-serif;    
+    //font-family: Arial, Helvetica, sans-serif;    
+    font-family: monospace;
 }
 
 .modal-function-name {
@@ -36,4 +37,20 @@
 .function-list {
     font-family: monospace;
     overflow-wrap: break-word;
+}
+
+.success-color {
+    color:#3da907;
+}
+
+.info-color {
+    color:#3a9bc7;
+}
+
+.warning-color {
+    color:#ff9104;
+}
+
+.critical-color {
+    color:red;
 }

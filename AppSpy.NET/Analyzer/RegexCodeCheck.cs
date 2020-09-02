@@ -83,7 +83,7 @@ namespace AppSpy.NET.Analyzer
                 if (currMatch.Success)
                 {
                     AnalysisCheckOutcome currOutcome = AnalysisCheckOutcome.CreateInstance(currCheck.ResponseIfCheckPassed);
-                    currOutcome.MatchingCodeBlock = new StringBuilder(currMatch.Value);
+                    currOutcome.MatchingCodeBlock = currMatch.Value;
                     currOutcome.RuleCategory = this.Category;
                     currOutcome.LineNumber = this.LineFromPos(codeToCheckAgainst.ToString(), currMatch.Index) + 1;
                     finalResult.Add(currOutcome);
@@ -91,7 +91,7 @@ namespace AppSpy.NET.Analyzer
                 else
                 {
                     AnalysisCheckOutcome currOutcome = AnalysisCheckOutcome.CreateInstance(currCheck.ResponseIfCheckPassed);
-                    currOutcome.MatchingCodeBlock = new StringBuilder(string.Empty);
+                    currOutcome.MatchingCodeBlock = string.Empty;
                     currOutcome.Level = OutcomeLevels.NoMatch;
                     currOutcome.RuleCategory = this.Category;
                     finalResult.Add(currOutcome);

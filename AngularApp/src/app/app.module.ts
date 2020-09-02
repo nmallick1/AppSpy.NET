@@ -8,6 +8,8 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from '@angular/forms';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
     MatDialogModule,
     BrowserAnimationsModule, 
     FormsModule,
-    MonacoEditorModule.forRoot()
+    MonacoEditorModule.forRoot(),
+    HttpClientModule,
   ],
   entryComponents:[CodeSelectorContainerComponent],
   providers: [],

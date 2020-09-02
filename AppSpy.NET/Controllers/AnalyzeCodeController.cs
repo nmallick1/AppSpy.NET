@@ -9,9 +9,11 @@ using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace AppSpy.NET.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AnalyzeCodeController : ApiController
     {
         // GET: api/AnalyzeCode
@@ -43,7 +45,7 @@ namespace AppSpy.NET.Controllers
             }
 
             Regex infiniteWhileLoopRegEx = new Regex(@"[\{|\}]*\s*[while]+\s*[\(]\s*[true|1|\!false|\!0]+\s*[\)]", RegexOptions.IgnoreCase);
-            AnalysisCheckOutcome outcomeForInfiniteWhileLoop = new AnalysisCheckOutcome(OutcomeLevels.Warning, "Potential infinite while loop", "Infinite while loops can cause CPU spike if the condition to break the loop fails.", "Consider assigning a max iteration to the while loop or an alternative bounding condition and deterministically terminate the loop.");
+            AnalysisCheckOutcome outcomeForInfiniteWhileLoop = new AnalysisCheckOutcome(OutcomeLevels.Warning, "Potential infinite while loop", "An infinite while loop can cause CPU spike if the condition to break the loop fails.", "Consider assigning a max iteration to the while loop or an alternative bounding condition and deterministically terminate the loop.");
             RegExCheck infiniteWhileLoop = new RegExCheck(infiniteWhileLoopRegEx, outcomeForInfiniteWhileLoop);
 
 
@@ -57,7 +59,7 @@ namespace AppSpy.NET.Controllers
                 response.AnalysisCheckResults = new List<AnalysisCheckOutcome>();
                 foreach (AnalysisCheckOutcome evalResult in infiniteLoopCheck.GetAssertedOutcomes(infiniteLooEvalResults))
                 {
-                    evalResult.MatchingCodeBlock = new StringBuilder(evalResult.MatchingCodeBlock.ToString().Trim().Replace(@"\t", string.Empty).Replace(@"\n", string.Empty));
+                    evalResult.MatchingCodeBlock = evalResult.MatchingCodeBlock.ToString().Trim().Replace(@"\t", string.Empty).Replace(@"\n", string.Empty);
                     response.AnalysisCheckResults.Add(evalResult);
                 }
                 return response;

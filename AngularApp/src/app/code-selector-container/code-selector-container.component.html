@@ -10,7 +10,34 @@
             <div style="border:1px solid black;height: 500px;">
                 <ngx-monaco-editor style="height: 100%;" (onInit)="onInit($event)" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
             </div>
-            <div style="border:1px solid black;">scan results here</div>
+            <div style="border:1px solid black;">
+                <div *ngIf="!!codeAnalysisResult && !!codeAnalysisResult.analysisResults && codeAnalysisResult.analysisResults.length > 0">
+                    <div *ngFor="let analysisResult of codeAnalysisResult.analysisResults">
+                        <div *ngIf = "!!analysisResult" (click)="highlightCodeLine(analysisResult)" style="cursor: pointer;">
+                            <div class="flex-row">
+                                <div style="display: flex;align-self: center;padding-left: 4px;padding-right: 8px;"><i [ngClass]="getStatusIcon(analysisResult.level)"></i></div>
+                                <div class="flex-column" >
+                                    <div style="font-size:larger;padding:2px 5px 2px 5px; border-bottom:1px solid #ccc; line-height: 1.8em;"><strong>{{analysisResult.title}}</strong></div>
+                                    <div class="flexGrid" style="display: grid;">
+                                        <div style="display: grid;grid-row-start: 1;grid-column-start: 1;padding:2px 5px 2px 5px;"><strong>Description</strong></div>
+                                        <div style="display: grid;grid-row-start: 1;grid-column-start: 2;padding:2px 5px 2px 5px;">{{analysisResult.description}}</div>
+                                        <div style="display: grid;grid-row-start: 2;grid-column-start: 1;padding:2px 5px 2px 5px;"><strong>Suggested Fix</strong></div>
+                                        <div style="display: grid;grid-row-start: 2;grid-column-start: 2;padding:2px 5px 2px 5px;">{{analysisResult.suggestedFix}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="codeAnalysisResult === null">
+                    Analyzing for known issues...
+                </div>
+                <div *ngIf="!!codeAnalysisResult && (codeAnalysisResult.analysisResults == null || codeAnalysisResult.analysisResults.length == 0) ">
+                    Code analysis failed..
+                </div>
+            </div>
         </div>
     </div>
 </div>   

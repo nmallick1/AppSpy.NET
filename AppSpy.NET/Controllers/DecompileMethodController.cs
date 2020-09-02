@@ -2,14 +2,16 @@
 using AppSpy.NET.Models;
 using System;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace AppSpy.NET.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DecompileMethodController : ApiController
     {
-        
-        // GET: api/decompileMethod?fullyQualifiedFunctionName=mawshol!demomvp.HighCPUPage1.ForceCpuUsage(int32)
 
+        // GET: api/decompileMethod?fullyQualifiedFunctionName=mawshol!demomvp.HighCPUPage1.ForceCpuUsage(int32)
+        
         [Route("api/decompileMethod")]       
         public string Get(string fullyQualifiedFunctionName)
         {

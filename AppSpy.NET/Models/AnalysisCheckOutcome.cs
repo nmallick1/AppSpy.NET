@@ -29,7 +29,7 @@ namespace AppSpy.NET.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string SuggestedFix { get; set; }
-        public StringBuilder MatchingCodeBlock { get; set; }
+        public string MatchingCodeBlock { get; set; }
         public RuleCategories RuleCategory { get; set; }
 
         public long LineNumber { get; set; }

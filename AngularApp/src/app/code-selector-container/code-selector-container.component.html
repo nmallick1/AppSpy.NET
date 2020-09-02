@@ -1,0 +1,16 @@
+ <div class = "container">
+    <div class="flex-row title-bar">
+        <div class="titleText"><h3>Code for function <span class="modal-function-name">{{data.functionName}}</span></h3></div>
+        <div class="closeAction" (click)="closeDialog()"><i class="fa fa-times"></i></div>
+    </div>
+    <hr/>
+    <div class="flex-row" style="height: 100%;border:1px solid black;">
+        <div class="function-list" style="width:30%"><ul><li>{{data.functionName}}</li></ul></div>
+        <div class="flex-column" style="width:70%">
+            <div style="border:1px solid black;height: 500px;">
+                <ngx-monaco-editor style="height: 100%;" (onInit)="onInit($event)" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+            </div>
+            <div style="border:1px solid black;">scan results here</div>
+        </div>
+    </div>
+</div>   

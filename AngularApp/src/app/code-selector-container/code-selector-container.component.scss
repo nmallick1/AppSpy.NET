@@ -1,0 +1,39 @@
+.container {
+    font-family: Arial, Helvetica, sans-serif;    
+}
+
+.modal-function-name {
+    font-size: 90%;
+    color:#c7254e;
+    background-color: #f9f2f4;
+    padding:2px 4px;
+    border-radius: 4px;
+}
+
+.flex-row {
+    flex-direction: row;
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+    display: flex;
+}
+
+.title-bar {    
+    
+    justify-content: space-between;
+
+}
+
+.closeAction {
+    cursor: pointer;
+    display: flex;
+    align-self: flex-start;
+
+}
+
+.function-list {
+    font-family: monospace;
+    overflow-wrap: break-word;
+}

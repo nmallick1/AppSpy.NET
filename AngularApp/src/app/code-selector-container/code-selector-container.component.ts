@@ -61,7 +61,20 @@ export class CodeSelectorContainerComponent implements OnInit {
               this.codeAnalysisResult = codeAnalysisResponse.codeAnalysisResult;
             }
             else {
-              this.code = `${this.code}\n\tFAILED TO ANALYZE CODE`;
+              this.codeAnalysisResult = {
+                ruleName : 'No issues found.',
+                ruleCategory : RuleCategories.Miscellaneous,
+                analysisResults:[ {
+                  level: OutcomeLevels.Success,
+                  title: 'No issues found.',
+                  description: 'No code level reliability issues found within this code block.',
+                  suggestedFix: 'We\'re good here.',
+                  lineNumber:-1,
+                  matchingCodeBlock: '',
+                  ruleCategory:RuleCategories.Miscellaneous                  
+                } as IAnalysisOutcome,
+               ]
+              } as ICodeAnalysisResponse;
             }
             
           });
@@ -107,6 +120,11 @@ export class CodeSelectorContainerComponent implements OnInit {
   
 
   public closeDialog() {
+    this.code = "Loading...";
+    this.lineNumberToHighlight_from = -1;
+    this.lineNumberToHighlight_to = -1;
+    this._monacoEditor = null;
+    this.codeAnalysisResult = null; 
     this.dialogRef.close('Done!');
   }
 

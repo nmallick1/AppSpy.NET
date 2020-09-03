@@ -44,7 +44,7 @@ namespace AppSpy.NET.Controllers
                 codeSb.AppendLine(codeLine);
             }
 
-            Regex infiniteWhileLoopRegEx = new Regex(@"[\{|\}]*\s*[while]+\s*[\(]\s*[true|1|\!false|\!0]+\s*[\)]", RegexOptions.IgnoreCase);
+            Regex infiniteWhileLoopRegEx = new Regex(@"[\{|\}]*\s*\bwhile\b\s*[\(]+\s*(\btrue\b|1|\!\bfalse\b|\!0)\s*[\)]+", RegexOptions.IgnoreCase);
             AnalysisCheckOutcome outcomeForInfiniteWhileLoop = new AnalysisCheckOutcome(OutcomeLevels.Warning, "Potential infinite while loop", "An infinite while loop can cause CPU spike if the condition to break the loop fails.", "Consider assigning a max iteration to the while loop or an alternative bounding condition and deterministically terminate the loop.");
             RegExCheck infiniteWhileLoop = new RegExCheck(infiniteWhileLoopRegEx, outcomeForInfiniteWhileLoop);
 

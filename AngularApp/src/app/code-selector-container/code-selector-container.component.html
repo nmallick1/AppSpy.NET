@@ -17,7 +17,10 @@
                             <div class="flex-row">
                                 <div style="display: flex;align-self: center;padding-left: 4px;padding-right: 8px;"><i [ngClass]="getStatusIcon(analysisResult.level)"></i></div>
                                 <div class="flex-column" >
-                                    <div style="font-size:larger;padding:2px 5px 2px 5px; border-bottom:1px solid #ccc; line-height: 1.8em;"><strong>{{analysisResult.title}}</strong></div>
+                                    <div style="font-size:larger;padding:2px 5px 2px 5px; border-bottom:1px solid #ccc; line-height: 1.8em;">
+                                        <span><strong>{{analysisResult.title}}</strong></span>
+                                        <span *ngIf="analysisResult.level!=1"><i class="fa fa-ellipsis-h info-color" style="vertical-align:sub; padding-left: 8px;" ></i></span>
+                                    </div>
                                     <div class="flexGrid" style="display: grid;">
                                         <div style="display: grid;grid-row-start: 1;grid-column-start: 1;padding:2px 5px 2px 5px;"><strong>Description</strong></div>
                                         <div style="display: grid;grid-row-start: 1;grid-column-start: 2;padding:2px 5px 2px 5px;">{{analysisResult.description}}</div>
